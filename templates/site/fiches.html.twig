@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cards{% endblock %}
+
+{% block body %}
+{% if role %}
+{% if role.0 == "ROLE_ADMIN" %}
+<div class="container">
+    <form action="{{ path('fiche_create') }}">
+        <button type="submit" class="btn btn-success">Nouvelle Fiche</button>
+    </form>
+</div>
+{% endif %}
+{% endif %}
+
+{% for fiche in fiches %}
+<div class="container">
+    <section class="fiches">
+        <fiche>
+            <h2>{{ fiche.title }}</h2>
+            <div class="metadata">fiche écrite le {{ fiche.createdAt | date('d/m/Y') }} à {{ fiche.createdAt | date('H:i')}} dans la categorie {{ fiche.categorie.name }}</div>
+            <div class="content">
+                <img src="{{ fiche.image }}" style="width: 650px; height: 350px">
+                <p></p>
+                <a href="{{ path('afficher_fiche', {'id': fiche.id}) }}" class="btn btn-primary">Lire la suite</a>
+            </div>
+        </fiche>
+    </section>
+</div>
+{% endfor %}
+{% endblock %}

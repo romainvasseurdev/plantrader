@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trade{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_row(form.place, {'attr':{'placeholder':"Rechercher par ville"}}) }}
+        <button class="btn btn-primary">Rechercher</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+<div class="container">
+    <h1>Les derniers échanges mis en ligne</h1>
+    {% if app.user %}
+        <a href="{{ path('nouvel_echange') }}" class="btn btn-success">Nouvel echange</a>
+    {% endif %}
+    <div class="row flex mt-4">
+{% for echange in echanges %}
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="text-success">{{ echange.title }}</p>
+                    </h5>
+                    <p class="card-text">Créé le :{{ echange.createdAt | date('d/m/Y') }}</p>
+                    <p class="card-text">À {{ echange.place }} </p>
+                    <p class="card-text">Catégorie : {{ echange.category.name }}</p>
+                    <p> <img src="https://placehold.it/150x100 "> </p>
+                    <form action="{{ path('afficher_echange', {'id': echange.id}) }}">
+                        <button type="submit" actio class="btn btn-success">Détails</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+{% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(echanges) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trade{% endblock %}
+
+{% form_theme formFiche 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<div class="container">
+    {{ form_start(formFiche) }}
+    {{ form_row(formFiche.title,{'attr':{'placeholder':"Titre de la fiche"}}) }}
+    {{ form_row(formFiche.categorie) }}
+    {{ form_row(formFiche.image,{'attr':{'placeholder':"Image de la fiche (url)"}}) }}
+    {{ form_row(formFiche.content,{'attr':{'placeholder':"Contenu de la fiche"}}) }}
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+    {{ form_end(formFiche) }}
+</div>
+{% endblock %}

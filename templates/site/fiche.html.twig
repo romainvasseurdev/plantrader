@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<fiche>
+    <div class="container">
+        <h2>{{ fiche.title }}</h2>
+    </div>
+    <div class="container">
+        <div class="metadata">fiche écrite le {{ fiche.createdAt | date('d/m/Y') }} à {{ fiche.createdAt | date('H:i')}} dans la categorie {{ fiche.categorie.name }}</div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <img src="{{ fiche.image }}" style="width: 650px; height: 350px">
+            <hr>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet iste mollitia maxime aliquid rem nesciunt repellat ad vitae necessitatibus nam impedit eligendi vero placeat, corporis alias. Deleniti, sint exercitationem aut optio natus voluptatum, possimus commodi explicabo velit ullam est maxime quos tenetur consequatur eaque aspernatur incidunt! Eveniet odio rerum eaque quaerat error in aliquid ea quisquam quos mollitia libero autem dicta iste nemo, assumenda molestiae distinctio illo itaque similique dolor voluptas cupiditate recusandae? Facere dolores velit ipsam, itaque ratione omnis dignissimos, cupiditate minus reiciendis est repellendus, facilis modi unde vel in asperiores iste laborum expedita delectus praesentium amet doloribus. Quia, amet magni explicabo quo, ducimus aperiam rerum eligendi eveniet recusandae aliquam ad quae nemo placeat adipisci doloribus. Veritatis voluptate perferendis voluptas. Quisquam suscipit voluptatum id molestias quod tempora, mollitia voluptatem.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa possimus accusamus totam saepe ipsa dolor, excepturi similique facere cupiditate atque, esse repellat aperiam voluptate error obcaecati earum. Odit dolorem eos atque soluta sed corrupti repellat earum, aliquid at dolore neque alias iste odio porro aspernatur optio perferendis? Ab soluta similique eius nulla nihil? Unde dolorum voluptates, distinctio ad temporibus tenetur accusantium quam quos. Fugiat ut voluptatum autem debitis tempora natus modi labore magni similique atque, nostrum rem consectetur minima beatae laborum nemo praesentium. Illo iste odio harum ratione reiciendis enim asperiores nihil non blanditiis tempore earum minima facilis repellat, voluptates atque placeat voluptatum ea, ad similique. Eos ipsum obcaecati debitis in ullam cupiditate eligendi beatae quibusdam nisi odit accusantium unde aut, alias odio sunt soluta ratione? Facilis cupiditate dolorem harum?</p>
+        </div>
+    </div>
+</fiche>
+{% if role %}
+{% if role.0 == "ROLE_ADMIN" %}
+<div class="container">
+    <form action="/fiches/{{ fiche.id }}/edit">
+        <button type="submit" class="btn btn-success">Editer</button>
+    </form>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}
